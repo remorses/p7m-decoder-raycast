@@ -1,0 +1,35 @@
+{
+  "name": "p7m-decoder",
+  "title": "P7M Decoder",
+  "description": "Decode Italian PEC .p7m signed files and view their contents",
+  "icon": "extension-icon.png",
+  "author": "morse",
+  "categories": ["Productivity", "Developer Tools"],
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "decode-p7m",
+      "title": "Decode P7M File",
+      "description": "Select a .p7m file to decode and view its contents",
+      "mode": "view"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.64.0",
+    "@raycast/utils": "^1.10.0"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^1.0.8",
+    "@types/node": "^20.10.0",
+    "eslint": "^8.54.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.2"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "publish": "npx @raycast/api@latest publish"
+  }
+}

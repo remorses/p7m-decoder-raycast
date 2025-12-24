@@ -1,0 +1,7 @@
+[2025-12-24T15:58:34.940Z] Building 1 commands...
+[2025-12-24T15:58:34.946Z] Resolving @raycast/api to termcast
+[2025-12-24T15:58:34.952Z] Built decode-p7m -> /Users/morse/Documents/GitHub/opentui/p7m-decoder-raycast/.termcast-bundle/decode-p7m.js
+[2025-12-24T15:58:34.952Z] Successfully built 1 files
+[2025-12-24T15:58:34.965Z] dev mode started
+[2025-12-24T15:58:34.989Z] replacing Command
+[2025-12-24T15:58:35.010Z] auto-focusing first field: files
