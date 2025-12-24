@@ -10,7 +10,7 @@
     {
       "name": "decode-p7m",
       "title": "Decode P7M File",
-      "description": "Select a .p7m file to decode and view its contents",
+      "description": "Select a PEC (Posta Elettronica Certificata) .p7m file to decode and view its contents",
       "mode": "view"
     }
   ],

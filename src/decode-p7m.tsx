@@ -10,7 +10,7 @@ import {
   getSelectedFinderItems,
 } from "@raycast/api"
 import { exec } from "child_process"
-import { readFile, writeFile, unlink } from "fs/promises"
+import { readFile, writeFile, unlink, copyFile } from "fs/promises"
 import { promisify } from "util"
 import path from "path"
 import os from "os"
@@ -123,6 +123,13 @@ async function decodeP7m(filePath: string): Promise<DecodedResult> {
   }
 }
 
+async function saveToDownloads(sourcePath: string, filename: string): Promise<string> {
+  const downloadsDir = path.join(os.homedir(), "Downloads")
+  const destPath = path.join(downloadsDir, filename)
+  await copyFile(sourcePath, destPath)
+  return destPath
+}
+
 function DecodedView({ result }: { result: DecodedResult }) {
   const { mimeType, isText } = getContentType(result.decodedName)
 
@@ -167,6 +174,27 @@ ${result.content}
         <ActionPanel>
           {result.savedFilePath && (
             <Action.OpenWith path={result.savedFilePath} title="Open Decoded File" />
+          )}
+          {result.savedFilePath && (
+            <Action
+              title="Save to Downloads"
+              onAction={async () => {
+                try {
+                  const destPath = await saveToDownloads(result.savedFilePath!, result.decodedName)
+                  await showToast({
+                    style: Toast.Style.Success,
+                    title: "Saved to Downloads",
+                    message: destPath,
+                  })
+                } catch (error) {
+                  await showToast({
+                    style: Toast.Style.Failure,
+                    title: "Failed to save",
+                    message: error instanceof Error ? error.message : "Unknown error",
+                  })
+                }
+              }}
+            />
           )}
           <Action.CopyToClipboard title="Copy Content" content={result.content} />
           <Action.Open title="Open Original File" target={result.originalPath} />
